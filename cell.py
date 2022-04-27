@@ -53,7 +53,8 @@ class Spawner(Cell):
         Создает монстра
         """
         for i in range(0, self.power):
-            unit = monster.Monster(global_names.MONSTERS_NAMES[random.randint(0, 2)])
+            mc = monster.MonsterCreator()
+            unit = mc.create(global_names.MONSTERS_NAMES[random.randint(0, 2)])
             unit.hp *= global_names.WAVE_NUMBER
             unit.cost *= global_names.WAVE_NUMBER
             global_names.MONSTERS.append(unit)

@@ -4,16 +4,14 @@ import global_names
 class Monster:
 
     def __init__(self, name):
-        species = {"Bugbear": [12, 1, 1, 1], "Hobgoglin": [20, 2, 1, 5],
-                   "Runner": [4, 1, 3, 1]}
         self.__name = name
         self.__x = 0
         self.__y = 0
         self.point = 0
-        self.__hp = species[name][0]
-        self.__damage = species[name][1]
-        self.__speed = species[name][2]
-        self.__cost = species[name][3]
+        self.__hp = global_names.MONSTERS_STATS[name][0]
+        self.__damage = global_names.MONSTERS_STATS[name][1]
+        self.__speed = global_names.MONSTERS_STATS[name][2]
+        self.__cost = global_names.MONSTERS_STATS[name][3]
         self.injured = False
 
     @property
@@ -144,3 +142,30 @@ class Monster:
         global_names.CASTLE.hp -= self.damage
         if global_names.CASTLE.hp <= global_names.EMPTY:
             global_names.CASTLE.destroy()
+
+
+class Bugbear(Monster):
+    def __init__(self):
+        super().__init__("Bugbear")
+
+
+class Hobgoblin(Monster):
+    def __init__(self):
+        super().__init__("Hobgoblin")
+
+
+class Runner(Monster):
+    def __init__(self):
+        super().__init__("Runner")
+
+
+class MonsterCreator:
+    def create(self, name):
+        monster = None
+        if name == "Bugbear":
+            monster = Bugbear()
+        elif name == "Hobgoblin":
+            monster = Hobgoblin()
+        elif name == "Runner":
+            monster = Runner()
+        return monster
