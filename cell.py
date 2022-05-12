@@ -57,7 +57,7 @@ class Spawner(Cell):
         """
         for i in range(0, self.power, global_names.WAVE_NUMBER):
             mc = monster.MonsterCreator()
-            unit = mc.create(self.monsters.names[random.randint(0, 2)])
+            unit = mc.create(list(self.monsters.stats.keys())[random.randint(0, 2)])
             unit.hp *= global_names.WAVE_NUMBER
             unit.cost *= global_names.WAVE_NUMBER
             global_names.MONSTERS.append(unit)
@@ -155,5 +155,5 @@ class Tower(Cell):
                 monsters.hp -= self.damage
                 monsters.injured = True
                 if monsters.hp <= 0:
-                    monsters.kill()
+                    monsters.kill(CASTLE)
                 break

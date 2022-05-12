@@ -126,7 +126,7 @@ class Graphic:
                                         1] // cell.Cell.SIZE
 
     def create_window(self):
-        global_names.SCREEN = pygame.display.set_mode(self.SCREENSIZE)
+        self.SCREEN = pygame.display.set_mode(self.SCREENSIZE)
         pygame.display.set_caption("TD v1.0")
 
 
@@ -217,7 +217,7 @@ class Graphic:
                     if self.map.scheme[global_names.TEMP_CELL[1]][
                         global_names.TEMP_CELL[0]] == self.grass:
                         # ставит башню там где был произведен клик мышкой
-                        if self.CASTLE.money >= self.TOWER_CREATING_COST:
+                        if self.CASTLE.money >= self.towers.TOWER_CREATING_COST:
                             self.map.scheme[global_names.TEMP_CELL[1]][
                                 global_names.TEMP_CELL[0]] = self.tower
                             global_names.TOWERS.append(
@@ -263,7 +263,6 @@ class Graphic:
                         global_names.MAPS_COLLECTION.pop(global_names.TEMP_ID)
                         global_names.TEMP_ID = global_names.EMPTY
                         self.map.scheme = self.saver.convert(self.DICTIONARY_FROM, self.map)
-
 
     def draw_window_levels(self):
         """
