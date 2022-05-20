@@ -28,9 +28,10 @@ class saver:
         for temp_y in range(map.width):
             temp_data = []
             for temp_x in range(map.length):
-                temp_data.append(dictionary[
-                                     global_names.MAPS_COLLECTION[
-                                         global_names.TEMP_ID][temp_y][temp_x]])
+                ind = global_names.MAPS_COLLECTION[global_names.TEMP_ID][temp_y][temp_x]
+                if ind > 4:
+                    ind = 1
+                temp_data.append(dictionary[ind])
             data.append(temp_data)
         return data
 
